@@ -10,7 +10,7 @@ export default  async function Prject() {
       {projects.map((project
 
     )=> (
-      <Link href={`projects/${project.slug}`}>
+      <Link href={`projects/${project.slug}`} key={project.name}>
       <div key={project._id} className="border border-gray-500 rounded-lg shadow-lg py-5 px-4 min-h-50">
         { project.image && (
         <Image

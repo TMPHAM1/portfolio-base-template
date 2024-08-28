@@ -5,15 +5,14 @@ export default  async function Home() {
   const projects = await getProjects();
   return (
     <div className="mx-10">
-      <h1 className="text-7xl font-extrabold">Hello I'm <span className="animate-fade bg-gradient-to-r from-orange-500 via-red-500 to-purple-600 bg-clip-text text-transparent">Rina</span>!</h1>
+      <h1 className="text-7xl font-extrabold">Hello I&apos;m <span className="animate-fade bg-gradient-to-r from-orange-500 via-red-500 to-purple-600 bg-clip-text text-transparent">Rina</span>!</h1>
       <p className="mt-3 text-xl text-gray-600">Welcome to my Portfolio! Check out my projects</p>
 
       <h2 className="mt-24 font-bold text-gray-700 text-3xl">My Projects</h2>
       <div className="mt-5 grid md:grid-cols-2 md:gap-8 lg:grid-cols-3 gap-4 grid-cols-1">
       {projects.map((project
-
     )=> (
-      <Link href={`projects/${project.slug}`}>
+      <Link href={`projects/${project.slug}`} key={project.name}>
       <div key={project._id} className="border border-gray-500 rounded-lg shadow-lg py-5 px-4 min-h-full">
         { project.image && (
         <Image
