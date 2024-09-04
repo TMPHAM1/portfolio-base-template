@@ -68,11 +68,11 @@ const Project = async ({params} : Props) => {
             {project.listDetails && project.listDetails.map(listItem=> {
 
                 return (
-                    <div className="min-w-full flex flex-col justify-items-center">
+                    <div key={listItem.name} className="min-w-full flex flex-col justify-items-center">
                     <h1 className="text-3xl text-center custom-gradient bg-clip-text text-transparent">{listItem.name}</h1>
                     <hr/>
                     <ul className="list-disc marker:text-pink-400 mx-auto">
-                        {listItem.listContent.map(bullet => <li>{bullet}</li>)}
+                        {listItem.listContent.map((bullet,index) => <li key={`${listItem.name}` + index}>{bullet}</li>)}
                     </ul>
             </div>
 
