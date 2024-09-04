@@ -4,7 +4,8 @@ import "@/src/app/globals.css"
 import Link from "next/link";
 import { getPages, getMetaData } from "@/sanity/sanity-utils";
 import Image from "next/image";
-
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -47,6 +48,7 @@ export default async function RootLayout({
             ))}
           </div>
         </header>
+        <ToastContainer/>
         <main className="md:py-20 py-5 lg:py-20 mx-auto">{children}</main>
       </body>
     </html>

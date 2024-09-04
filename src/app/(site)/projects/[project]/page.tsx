@@ -10,6 +10,7 @@ type Props = {
 const Project = async ({params} : Props) => {
     const slug = params.project;
     const project = await getProject(slug);
+    console.log('tHIS IS PROJECT', project);
     const components: PortableTextComponents = {
         marks: {
             // Ex. 1: custom renderer for the em / italics decorator
@@ -52,7 +53,9 @@ const Project = async ({params} : Props) => {
       
             <div className="px-5 whitespace-break-spaces">
             <h1 className="text-center text-2xl custom-gradient bg-clip-text text-transparent md:col-start-2  font-semibold my-auto mt-2 mb-2">Summary</h1>
-            <PortableText value={project.content} components={components}/> 
+            <div>
+            <PortableText  value={project.content} components={components}/> 
+            </div>
             <div className="text-center mt-10">
             <a href={project.url} title="View Project" target="_blank" rel="noopner noreferrer" 
             className="hover:bg-gray-100 hover:bg-transparent rounded-lg hover:text-gray-500 w-1/5 text-center font-bold py-3 px-4 whitespace-nowrap   transition mt-2 text-white custom-gradient">
@@ -61,25 +64,21 @@ const Project = async ({params} : Props) => {
             </div>
             </div>
         </div>
-        <div className="grid my-10 gap-12 md:grid-cols-4 grid-cols-1 bg-cr">
-            <div className="min-w-full">
-                <h1 className="text-3xl text-center custom-gradient bg-clip-text text-transparent">Discover</h1>
-                <hr />
+        <div className="grid my-10 gap-12 md:grid-cols-4 px-5">
+            {project.listDetails && project.listDetails.map(listItem=> {
+
+                return (
+                    <div className="min-w-full flex flex-col justify-items-center">
+                    <h1 className="text-3xl text-center custom-gradient bg-clip-text text-transparent">{listItem.name}</h1>
+                    <hr/>
+                    <ul className="list-disc marker:text-pink-400 mx-auto">
+                        {listItem.listContent.map(bullet => <li>{bullet}</li>)}
+                    </ul>
             </div>
-            <div className="min-w-full">
-                <h1 className="text-3xl text-center custom-gradient bg-clip-text text-transparent">Define</h1>
-                <hr />
-                <ol>
-                </ol>
-            </div>
-            <div className="min-w-full">
-                <h1 className="text-3xl text-center custom-gradient bg-clip-text text-transparent">Develop</h1>
-                <hr />
-            </div>
-            <div className="min-w-full">
-                <h1 className="text-3xl text-center custom-gradient bg-clip-text text-transparent">Develop</h1>
-                <hr />
-            </div>
+
+                )
+            })}
+            
         </div>
    
         </div>

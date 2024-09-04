@@ -42,10 +42,25 @@ const project = {
             title: 'List Details',
             type: 'array',
             of: [
-                {type: 'reference',
-                 to: [
-                    {type:'list'}
-                 ]
+                {
+                    name: "List",
+                    type: 'object',
+                    fields: [
+                        {
+                            name: "name",
+                            title: 'List Name',
+                            type: 'string',
+                        },
+                        {
+                            name: 'listContent',
+                            title: 'List Content',
+                            type: "array",
+                            of: [{
+                                type: "string"
+                            }]
+                        }
+                    ]
+                    
                 }
             ]
         }
