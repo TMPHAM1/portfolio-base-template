@@ -31,6 +31,12 @@ const page = {
             title: 'Content',
             type: "array",
             of: [{type: "block"}] // This allows for Wizzywigs or SmartText/ Rich Text 
+        },
+        {
+            name: 'forms',
+            title: 'Forms',
+            type: "reference",
+            to: [{type: "dynamicForm"}] 
         }
     ]
 }
