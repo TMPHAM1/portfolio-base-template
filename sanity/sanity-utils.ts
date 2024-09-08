@@ -28,7 +28,13 @@ export async function getProject(slug: string) : Promise<Project> {
             "image": image.asset->url,
             url,
             alt,
-            content
+            content,
+            listDetails[] {
+                name,
+                listContent
+            }
+            ,
+            
         }`, {slug}
     )
 }
@@ -55,7 +61,8 @@ export async function getPage(slug: string) : Promise<Page> {
             "slug": slug.current, 
             "image": image.asset->url,
             alt,
-            content
+            content,
+            'form': forms->,
         }`, {slug}
     )
 }

@@ -3,5 +3,10 @@
 @tailwind utilities;
 
 .custom-gradient {
-  @apply bg-gradient-to-r from-pink-300 to-yellow-200 to-amber-300
+  @apply bg-gradient-to-r from-pink-300 to-yellow-200 to-amber-300 hover:opacity-50
 }
+
+.border-gradient-div {
+  @apply absolute inset-[1.1rem] rounded-lg bg-gradient-to-r from-yellow-600 via-orange-600 to-red-600 opacity-30 blur
+}
+
