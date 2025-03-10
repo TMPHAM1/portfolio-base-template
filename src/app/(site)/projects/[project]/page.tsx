@@ -10,7 +10,6 @@ type Props = {
 const Project = async ({params} : Props) => {
     const slug = params.project;
     const project = await getProject(slug);
-    console.log('tHIS IS PROJECT', project);
     const components: PortableTextComponents = {
         marks: {
             // Ex. 1: custom renderer for the em / italics decorator
