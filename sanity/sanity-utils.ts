@@ -95,7 +95,7 @@ export async function getMetaData(slug: string = ""): Promise<Metadata> {
   );
 }
 
-export async function getPortfolio(slug) {
+export async function getPortfolio(slug: string) {
   const query = `*[_type == "portfolio-item" && slug.current == $slug][0]{
     title,
     heroImage {

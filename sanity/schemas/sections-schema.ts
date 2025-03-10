@@ -1,3 +1,6 @@
+export type SectionTypeParent = {
+  parent: { sectionType: string };
+};
 export default {
   name: "section",
   title: "Section",
@@ -25,20 +28,21 @@ export default {
       name: "header",
       type: "string",
       title: "Header",
-      hidden: ({ parent }) => parent?.sectionType !== "text",
+      hidden: ({ parent }: SectionTypeParent) => parent?.sectionType !== "text",
     },
     {
       name: "content",
       type: "array",
       title: "Rich Text Content",
       of: [{ type: "block" }],
-      hidden: ({ parent }) => parent?.sectionType !== "text",
+      hidden: ({ parent }: SectionTypeParent) => parent?.sectionType !== "text",
     },
     {
       name: "fullImage",
       type: "image",
       title: "Full-Width Image",
-      hidden: ({ parent }) => parent?.sectionType !== "fullImage",
+      hidden: ({ parent }: SectionTypeParent) =>
+        parent?.sectionType !== "fullImage",
       options: {
         hotspot: true,
       },
@@ -48,7 +52,8 @@ export default {
       type: "array",
       title: "Multiple Images",
       of: [{ type: "image" }],
-      hidden: ({ parent }) => parent?.sectionType !== "multiImage",
+      hidden: ({ parent }: SectionTypeParent) =>
+        parent?.sectionType !== "multiImage",
       options: {
         layout: "grid",
       },

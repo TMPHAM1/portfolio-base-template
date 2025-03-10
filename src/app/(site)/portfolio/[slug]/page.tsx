@@ -3,7 +3,7 @@ import { getPortfolio } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 
-export default async function PortfolioItem({ params }) {
+export default async function PortfolioItem({ params }: {params: {slug: string}}) {
     console.log(params);
   if (!params?.slug) {
     return <div>Error: Missing slug parameter.</div>;
@@ -30,11 +30,11 @@ export default async function PortfolioItem({ params }) {
 
       {/* Render Sections */}
       {portfolio.sections?.length > 0 &&
-        portfolio.sections.map((section, index) => (
+        portfolio.sections.map((section: any, index: number) => (
           <div key={index} className="my-6">
             <h2 className="text-2xl font-semibold mb-2">{section.header}</h2>
             {section.sectionType === "text" && (
-              <PortableText value={section.content} className="text-gray-700" />
+              <PortableText value={section.content}  />
             )}
             {section.sectionType === "fullImage" && section.fullImage && (
               <Image
@@ -47,7 +47,7 @@ export default async function PortfolioItem({ params }) {
             )}
             {section.sectionType === "multiImage" && section.images?.length > 0 && (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {section.images.map((img, idx) => (
+                {section.images.map((img: any, idx: number) => (
                   <Image
                     key={idx}
                     src={img.asset.url}
