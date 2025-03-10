@@ -4,13 +4,11 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 
 export default async function PortfolioItem({ params }: {params: {slug: string}}) {
-    console.log(params);
   if (!params?.slug) {
     return <div>Error: Missing slug parameter.</div>;
   }
 
   const portfolio = await getPortfolio(params.slug);
-  console.log('tHIS IS PORTFOLIO', portfolio)
   if (!portfolio) return <div>Portfolio not found.</div>;
 
   return (
@@ -34,16 +32,23 @@ export default async function PortfolioItem({ params }: {params: {slug: string}}
           <div key={index} className="my-6">
             <h2 className="text-2xl font-semibold mb-2">{section.header}</h2>
             {section.sectionType === "text" && (
+              <div className="portable-text"> 
               <PortableText value={section.content}  />
+              </div>
             )}
             {section.sectionType === "fullImage" && section.fullImage && (
-              <Image
-                src={section.fullImage.asset.url}
-                alt="Section Image"
-                width={1800}
-                height={600}
-                className="rounded-lg shadow-md"
-              />
+          <div className="max-w-full flex flex-row justify-center ">
+  {section.sectionType === "fullImage" && section.fullImage && (
+    <Image
+      src={section.fullImage.asset.url}
+      alt="Section Image"
+      width={800}
+      height={600}
+      objectFit="contain"  // Ensure the image stays within the container size without stretching
+      className="rounded-lg shadow-md"
+    />
+  )}
+</div>
             )}
             {section.sectionType === "multiImage" && section.images?.length > 0 && (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -58,6 +63,23 @@ export default async function PortfolioItem({ params }: {params: {slug: string}}
                   />
                 ))}
               </div>
+            )}
+              {section.sectionType === "multiList" && section.listDetails?.length > 0 && (
+                   <div className="grid my-10  md:grid-cols-3 w-full px-5">
+                       {section.listDetails && section.listDetails.map( (listItem : any)=> {
+
+                return (
+                    <div key={listItem.name} className="min-w-full flex flex-col justify-items-center">
+                    <h1 className="text-xl text-center">{listItem.name}</h1>
+              
+                    <ul className="mt-5 text-center">
+                        {listItem.listContent.map((bullet: any,index: number) => <li key={`${listItem.name}` + index}>{bullet}</li>)}
+                    </ul>
+            </div>
+
+                )
+            })}
+            </div>
             )}
           </div>
         ))}
