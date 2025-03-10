@@ -1,12 +1,11 @@
-import { Project, Page, Metadata} from "@/types";
-import {createClient, groq} from "next-sanity"
-import clientConfig from "./config/client-config"
+import { Project, Page, Metadata } from "@/types";
+import { createClient, groq } from "next-sanity";
+import clientConfig from "./config/client-config";
 
-
-
-export async function getProjects() : Promise<Project[]> { // Creates Client in which we can crate our GROQ calls
- return  createClient(clientConfig).fetch(
-        groq`*[_type == "project"]{
+export async function getProjects(): Promise<Project[]> {
+  // Creates Client in which we can crate our GROQ calls
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "project"]{
             _id,
             _createdAt,
             name,
@@ -15,12 +14,12 @@ export async function getProjects() : Promise<Project[]> { // Creates Client in 
             url,
             alt,
         }`
-    )
+  );
 }
 
-export async function getProject(slug: string) : Promise<Project> {
-    return  createClient(clientConfig).fetch(
-        groq`*[_type == "project" && slug.current == $slug][0]{
+export async function getProject(slug: string): Promise<Project> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "project" && slug.current == $slug][0]{
             _id,
             _createdAt,
             name,
@@ -35,13 +34,15 @@ export async function getProject(slug: string) : Promise<Project> {
             }
             ,
             
-        }`, {slug}
-    )
+        }`,
+    { slug }
+  );
 }
 
-export async function getPages() : Promise<Page[]> { // Creates Client in which we can crate our GROQ calls
-    return  createClient(clientConfig).fetch(
-           groq`*[_type == "page"]{
+export async function getPages(): Promise<Page[]> {
+  // Creates Client in which we can crate our GROQ calls
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "page"]{
                _id,
                _createdAt,
                title,
@@ -50,11 +51,11 @@ export async function getPages() : Promise<Page[]> { // Creates Client in which 
                url,
                alt,
            }`
-       )
-   }
-export async function getPage(slug: string) : Promise<Page> {
-    return  createClient(clientConfig).fetch(
-        groq`*[_type == "page" && slug.current == $slug][0]{
+  );
+}
+export async function getPage(slug: string): Promise<Page> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "page" && slug.current == $slug][0]{
             _id,
             _createdAt,
             title,
@@ -63,13 +64,15 @@ export async function getPage(slug: string) : Promise<Page> {
             alt,
             content,
             'form': forms->,
-        }`, {slug}
-    )
+        }`,
+    { slug }
+  );
 }
 
-export async function getMetaData(slug: string = '') : Promise<Metadata> { // Creates Client in which we can crate our GROQ calls
-    return  createClient(clientConfig).fetch(
-           groq`*[_type == "metadata"][0]{
+export async function getMetaData(slug: string = ""): Promise<Metadata> {
+  // Creates Client in which we can crate our GROQ calls
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "metadata"][0]{
                _id,
                _createdAt,
                title,
@@ -87,6 +90,28 @@ export async function getMetaData(slug: string = '') : Promise<Metadata> { // Cr
                author,
                showName,
                name,
-           }`, {slug}
-       )
-   }
+           }`,
+    { slug }
+  );
+}
+
+export async function getPortfolio(slug) {
+  const query = `*[_type == "portfolio-item" && slug.current == $slug][0]{
+    title,
+    heroImage {
+      asset-> { url }
+    },
+    sections[]-> {
+      title,
+      header,
+      sectionType,
+      content,
+      fullImage { asset-> { url } },
+      images[] { asset-> { url } }
+    }
+  }`;
+
+  return sanityClient.fetch(query, { slug });
+}
+
+export const sanityClient = createClient(clientConfig);
