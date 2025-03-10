@@ -2,18 +2,13 @@ import { Project, Page, Metadata } from "@/types";
 import { createClient, groq } from "next-sanity";
 import clientConfig from "./config/client-config";
 
-export async function getProjects(): Promise<Project[]> {
-  // Creates Client in which we can crate our GROQ calls
+export async function getProjects(): Promise<any> {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "project"]{
-            _id,
-            _createdAt,
-            name,
-            "slug": slug.current, 
-            "image": image.asset->url,
-            url,
-            alt,
-        }`
+    groq`*[_type == "portfolio-item"]{
+      "slug": slug.current, 
+      title,
+      "heroImage": heroImage.asset-> { url }
+    }`
   );
 }
 
@@ -47,7 +42,7 @@ export async function getPages(): Promise<Page[]> {
                _createdAt,
                title,
                "slug": slug.current, 
-               "image": image.asset->url,
+               "image": asset->url,
                url,
                alt,
            }`
@@ -106,6 +101,10 @@ export async function getPortfolio(slug: string) {
       header,
       sectionType,
       content,
+       listDetails[] {
+                name,
+                listContent
+            },
       fullImage { asset-> { url } },
       images[] { asset-> { url } }
     }

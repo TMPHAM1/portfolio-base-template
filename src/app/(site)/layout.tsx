@@ -24,7 +24,6 @@ export default async function RootLayout({
   // Get Pages to populate the navigation bar
   const pages= await getPages();
   const metadata = await getMetaData();
-  console.log(metadata);
   return (
     <html lang="en">
       <body >

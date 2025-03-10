@@ -20,6 +20,7 @@ export default {
           { title: "Header + Content", value: "text" },
           { title: "Full-Width Image", value: "fullImage" },
           { title: "Multiple Images", value: "multiImage" },
+          { title: "Multiple Lists", value: "multiList" },
         ],
         layout: "radio",
       },
@@ -57,6 +58,36 @@ export default {
       options: {
         layout: "grid",
       },
+    },
+    {
+      name: "listDetails",
+      title: "List Details",
+      type: "array",
+      of: [
+        {
+          name: "List",
+          type: "object",
+          fields: [
+            {
+              name: "name",
+              title: "List Name",
+              type: "string",
+            },
+            {
+              name: "listContent",
+              title: "List Content",
+              type: "array",
+              of: [
+                {
+                  type: "string",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      hidden: ({ parent }: SectionTypeParent) =>
+        parent?.sectionType !== "multiList",
     },
   ],
 };

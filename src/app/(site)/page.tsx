@@ -10,19 +10,19 @@ export default  async function Home() {
 
       <h2 className="mt-24 font-bold text-gray-700 text-3xl">My Projects</h2>
       <div className="mt-5 grid md:grid-cols-2 md:gap-8 lg:grid-cols-3 gap-4 grid-cols-1">
-      {projects.map((project
+      {projects.map((project: any
     )=> (
-      <Link href={`projects/${project.slug}`} key={project.name}>
+      <Link href={`portfolio/${project.slug}`} key={project.title}>
       <div key={project._id} className="border border-gray-500 rounded-lg shadow-lg py-5 px-4 min-h-full">
-        { project.image && (
+        { project.heroImage && (
         <Image
-        src={project.image}
-        alt={project.name}
+        src={project.heroImage.url}
+        alt={project.title}
         width={750}
         height={300}
         className="object-cover rounded-lg border border-gray-500 min-h-30 max-h-32"
         ></Image>)}
-        <div className=" px-2 text-center mt-2 font-extrabold bg-gradient-to-r from-orange-500 via-red-500 to-purple-600 bg-clip-text text-transparent">{project.name}</div>
+        <div className=" px-2 text-center mt-2 font-extrabold bg-gradient-to-r from-orange-500 via-red-500 to-purple-600 bg-clip-text text-transparent">{project.title}</div>
       </div>
       </Link>
     ))}
