@@ -49,7 +49,7 @@ export default async function RootLayout({
           </div>
         </header>
         <ToastContainer/>
-        <main className="md:py-20 py-5 lg:py-20 mx-auto">{children}</main>
+        <main className=" py-5  mx-auto">{children}</main>
       </body>
     </html>
   );
