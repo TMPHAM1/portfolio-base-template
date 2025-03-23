@@ -18,6 +18,11 @@ export default {
       },
     },
     {
+      name: "order",
+      type: "number",
+      initialValue: 0, // Set default order as 0
+    },
+    {
       name: "heroImage",
       type: "image",
       title: "Hero Image",

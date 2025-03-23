@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 export default  async function Home() {
   const projects = await getProjects();
+  console.log('THIS IS PROEJCTS', projects)
   return (
     <div className="mx-10">
       <h1 className="text-7xl font-extrabold">Hello I&apos;m <span className="animate-fade bg-gradient-to-r from-orange-500 via-red-500 to-purple-600 bg-clip-text text-transparent">Rina</span>!</h1>

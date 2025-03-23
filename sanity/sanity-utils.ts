@@ -4,7 +4,7 @@ import clientConfig from "./config/client-config";
 
 export async function getProjects(): Promise<any> {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "portfolio-item"]{
+    groq`*[_type == "portfolio-item"] | order(order asc){
       "slug": slug.current, 
       title,
       "heroImage": heroImage.asset-> { url }
