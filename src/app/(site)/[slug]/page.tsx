@@ -20,9 +20,9 @@ const Page = async ({ params }: Props) => {
         <Image
           src={page.image}
           alt={page.title}
-          width={200}
-          height={200}
-          className="mt-5 border-2 gray-700 rounded-xl w-1/5 mx-auto"
+          width={500}
+          height={500}
+          className="mt-5 border-2 gray-700 rounded-xl lg:w-1/5 mx-auto"
         />
       )}
 
