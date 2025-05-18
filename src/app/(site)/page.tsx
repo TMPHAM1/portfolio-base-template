@@ -19,10 +19,13 @@ export default async function Home() {
         !
       </h1>
       <p className="mt-3 text-xl text-gray-600">
-        Welcome to my Portfolio! Check out my projects
+        Welcome to my Portfolio!
+        <p className="text-lg mt-3">
+          Feel free to check out a few of my projects below.
+        </p>
       </p>
 
-      <h2 className="mt-24 font-bold text-gray-700 text-3xl mb-10">
+      <h2 className="mt-12 font-bold text-gray-700 text-3xl mb-10">
         My Projects
       </h2>
       <div className="mt-5 grid md:grid-cols-2 md:gap-8 gap-8 lg:grid-cols-3  grid-cols-1">
@@ -42,7 +45,7 @@ export default async function Home() {
                   className="object-cover rounded-lg border border-gray-500 min-h-30 max-h-32"
                 ></Image>
               )}
-              <div className=" px-2 text-center mt-2 font-extrabold bg-gradient-to-r from-orange-500 via-red-500 to-purple-600 bg-clip-text text-transparent">
+              <div className=" px-2 text-center mt-2 font-extrabold bg-gradient-to-r from-primary via-secondary to-tertiary bg-clip-text text-transparent">
                 {project.title}
               </div>
             </motion.div>
