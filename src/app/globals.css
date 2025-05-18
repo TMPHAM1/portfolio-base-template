@@ -13,7 +13,7 @@
 }
 
 .border-gradient-div {
-  @apply absolute inset-[1.1rem] rounded-lg bg-gradient-to-r from-yellow-600 via-orange-600 to-red-600 opacity-30 blur;
+  @apply absolute inset-[1.1rem] rounded-lg bg-gradient-to-r from-primary via-secondary to-tertiary opacity-30 blur;
 }
 
 /* .text-gradient {
