@@ -63,6 +63,17 @@ export async function getPage(slug: string): Promise<Page> {
     { slug }
   );
 }
+export async function getSiteSettings(): Promise<any> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "settings"][0]{
+          "primary": primary_color.hex,
+      "secondary": secondary_color.hex,
+      "tertiary": tertiary_color.hex,
+      "additional": additional_color.hex,
+
+        }`
+  );
+}
 
 export async function getMetaData(slug: string = ""): Promise<Metadata> {
   // Creates Client in which we can crate our GROQ calls
@@ -74,7 +85,7 @@ export async function getMetaData(slug: string = ""): Promise<Metadata> {
                "logo": logo.asset->url,
                canonical,
                ogtitle,
-               favicon,
+               "favicon": favicon.asset -> url,
                ogtitle,
                ogdescription,
                ogimage,
