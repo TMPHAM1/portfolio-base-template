@@ -8,13 +8,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: "var(--color-primary)",
+        secondary: "var(--color-secondary)",
+        tertiary: "var(--color-tertiary)",
+      },
+
       animation: {
-        fade: 'fadeIn 2s ease-in-out',
+        fade: "fadeIn 2s ease-in-out",
       },
       keyframes: () => ({
         fadeIn: {
-          '0%': { opacity: '0%' },
-          '100%': { opacity: '100%' },
+          "0%": { opacity: "0%" },
+          "100%": { opacity: "100%" },
         },
       }),
       backgroundImage: {
@@ -24,8 +30,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography')
-  ],
+  plugins: [require("@tailwindcss/typography")],
 };
 export default config;

@@ -1,59 +1,54 @@
-import React from 'react'
-
+import React from "react";
+import Head from "next/head";
 
 type Props = {
-    title:string;
-    charset: string;
-    description: string;
-    viewport: string;
-    canonicalUrl: string;
-    ogtitle: string;
-    ogdescription: string;
-    ogimage:string;
-    ogurl: string;
-    twittertitle: string;
-    twitterdescription: string;
-    twitterimage:string;
-    twittercard: string;
-    author:string;
-    favicon: string;
-}
+  title: string;
+  charset: string;
+  description: string;
+  viewport: string;
+  canonicalUrl: string;
+  ogtitle: string;
+  ogdescription: string;
+  ogimage: string;
+  ogurl: string;
+  twittertitle: string;
+  twitterdescription: string;
+  twitterimage: string;
+  twittercard: string;
+  author: string;
+  favicon: string;
+};
 
 const MetaFieldsHeader = (props: Props) => {
+  console.log("THIS IS PROPS", props);
   return (
-    <head>
-    <meta charSet={props.charset} />
-    <meta name="viewport" content={props.viewport} />
+    <Head>
+      <meta charSet={props.charset} />
+      <meta name="viewport" content={props.viewport} />
 
-    <title>{props.title}</title>
+      <title>{props.title}</title>
 
-    <meta name="description" content={props.description}/>
+      <meta name="description" content={props.description} />
 
-    <link rel="canonical" href={props.canonicalUrl} />
+      <link rel="canonical" href={props.canonicalUrl} />
 
+      <meta property="og:title" content={props.ogtitle} />
+      <meta property="og:description" content={props.ogdescription} />
+      <meta property="og:image" content={props.ogimage} />
+      <meta property="og:url" content={props.ogurl} />
 
-    <meta property="og:title" content={props.ogtitle} />
-    <meta property="og:description" content={props.ogdescription}/>
-    <meta property="og:image" content={props.ogimage} />
-    <meta property="og:url" content={props.ogurl} />
+      <meta name="twitter:title" content={props.title} />
+      <meta name="twitter:description" content={props.twitterdescription} />
+      <meta name="twitter:image" content={props.twitterimage} />
+      <meta name="twitter:card" content={props.twittercard} />
 
+      <link rel="icon" href={props.favicon} type="image/x-icon" />
 
-    <meta name="twitter:title" content={props.title}/>
-    <meta name="twitter:description" content={props.twitterdescription} />
-    <meta name="twitter:image" content={props.twitterimage} />
-    <meta name="twitter:card" content={props.twittercard} />
+      <meta name="author" content={props.author} />
 
-  
-    <link rel="icon" href={props.favicon} type="image/x-icon" />
+      <meta name="application-name" content={props.title} />
+    </Head>
+  );
+};
 
-  
-    <meta name="author" content={props.author}/>
-
-
-    <meta name="application-name" content={props.title}/>
-
-</head>
-  )
-}
-
-export default MetaFieldsHeader
+export default MetaFieldsHeader;
