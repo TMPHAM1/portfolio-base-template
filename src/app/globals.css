@@ -2,14 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-primary: #8fb890;
+  --color-secondary: #facc15;
+  --color-tertiary: #f59e0b;
+}
+
 .custom-gradient {
-  @apply bg-gradient-to-r from-pink-300 to-yellow-200 to-amber-300 hover:opacity-50;
+  @apply bg-gradient-to-r from-primary via-secondary to-tertiary hover:opacity-50;
 }
 
 .border-gradient-div {
   @apply absolute inset-[1.1rem] rounded-lg bg-gradient-to-r from-yellow-600 via-orange-600 to-red-600 opacity-30 blur;
 }
 
+/* .text-gradient {
+  background: linear-gradient(
+    to right,
+    var(--color-primary),
+    var(--color-secondary),
+    var(--color-tertiary)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} */
 .portable-text ul {
   padding-left: 1.5rem; /* Adjust to match your rich text indentation */
   list-style-type: disc; /* Optionally, you can set the list style */
