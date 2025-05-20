@@ -3,6 +3,7 @@ import { getPortfolio } from "@/sanity/sanity-utils";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import Image from "next/image";
 import FadeContent from "@/src/app/(components)/ui/FadeInContainer";
+import { useEffect } from "react";
 
 export default async function PortfolioItem({
   params,
@@ -14,6 +15,7 @@ export default async function PortfolioItem({
   }
 
   const portfolio = await getPortfolio(params.slug);
+
   if (!portfolio) return <div>Portfolio not found.</div>;
   const components: PortableTextComponents = {
     marks: {

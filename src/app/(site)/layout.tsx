@@ -6,6 +6,7 @@ import { getPages, getMetaData, getSiteSettings } from "@/sanity/sanity-utils";
 import Image from "next/image";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+export const revalidate = 10;
 
 const inter = Inter({ subsets: ["latin"] });
 
